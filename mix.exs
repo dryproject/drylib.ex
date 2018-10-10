@@ -27,12 +27,15 @@ defmodule DRY.MixProject do
       name: @name,
       source_url: @github,
       homepage_url: @homepage,
+      description: description(),
       docs: [
         source_ref: @version,
         main: "readme",
-        extras: ["README.md", "CHANGES.md"]
+        extras: [
+          "README.md": [title: @name],
+          "CHANGES.md": [title: "Changelog"]
+        ]
       ],
-      description: description(),
 
       # See: https://github.com/parroty/excoveralls
       test_coverage: [tool: ExCoveralls],
@@ -78,7 +81,7 @@ defmodule DRY.MixProject do
   defp package do
     # See: https://hex.pm/docs/publish
     [
-      files: ~w(lib priv src mix.exs CHANGES.md README.md UNLICENSE VERSION),
+      files: ~w(lib mix.exs CHANGES.md README.md UNLICENSE VERSION),
       maintainers: ["Arto Bendiken"],
       licenses: ["Public Domain"],
       links: %{"GitHub" => @github, "Bitbucket" => @bitbucket}
